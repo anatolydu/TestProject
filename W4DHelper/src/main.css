@@ -1,0 +1,42 @@
+/* Common variables */
+html 
+{
+  --friends_words_width: 15%;
+}
+
+/* Style for left part contain owner and his friends worlds... */
+#friends_words
+{
+	background-color: red;
+	
+}
+
+/* Style for buttons with their container */
+.words_button_container
+{
+ 	width: 90%;
+ 	margin-left: 5%;
+    float: left;
+    border: solid 1px blue;
+    text-align: center;
+}
+
+button:first-child	/* first button */
+{
+    background-color: #f8f;
+    float: left;
+    margin-left:5%;
+}
+
+button:first-child + button /* second button - first button after previous first button */
+{
+	background-color: red;
+}
+
+button:last-child /* last button */
+{
+    background-color: #8ff;
+    float: right;
+    margin-right:5%;
+}
+

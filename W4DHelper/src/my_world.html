@@ -1,0 +1,105 @@
+<html>
+  <head>
+    <title></title>
+    <script> 
+	  
+    </script> 
+    
+    <link rel="stylesheet" href="main.css" />
+	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+	<link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet"/>
+
+	<script type="text/javascript" src="./tests/eu-countries.js"></script>
+	<script type="text/javascript" src="./tests/eu-countrie1.js"></script>
+	<script type="text/javascript" src="./tests/eu-countrie2.js"></script>
+	<script src="utility.js"></script>
+  </head>
+  
+  <body>
+    <header style="background: #E0E0E0; height: 80px; padding: 5px;">
+  		<div style="float: left">
+      		<h1>My Site</h1>
+  		</div>
+  		<div style="float: right; padding: 10px;">
+      		Search <input name="search">
+  		</div>
+	</header>
+    <!--Remaining section-->
+    
+    <div id="body">
+		<div style="float:left; width: calc( var(--friends_words_width) ); background:gray; margin:0px">
+			<div>My Worlds</div>
+			<select name="Cars" size="8" style="width:90%; margin:5% 5% 2% 5%">
+			    <option value="Merceders"> Merceders</option>
+			    <option value="BMW"> BMW </option>
+			    <option value="Jaguar"> Jaguar </option>
+			    <option value="Lamborghini"> Lamborghini </option>
+			    <option value="Ferrari"> Ferrari </option>
+			    <option value="Ford"> Ford </option>
+			</select>
+
+			 <div class="words_button_container">
+				<button>New</button> 
+				<button>Edit</button> 
+				<button>Delete</button> 
+			</div>
+			
+			<div>My Friends Worlds</div>
+			<select name="Cars" size="12" style="width:90%; margin:5%">
+			    <option value="Merceders"> Merceders</option>
+			    <option value="BMW"> BMW </option>
+			    <option value="Jaguar"> Jaguar </option>
+			    <option value="Lamborghini"> Lamborghini </option>
+			    <option value="Ferrari"> Ferrari </option>
+			    <option value="Ford"> Ford </option>
+			</select>		
+			
+			<div class="words_button_container">
+				<button>Add Friend</button> 
+				<button>Remove Friend</button> 
+
+			</div>	
+		</div>
+		<div style="width: calc( 100% - var(--friends_words_width) ); float:left; background:yellow; margin:0px">
+			<div id="osm-map"; style="width:1050; height:700px";></div>
+		</div>  
+		<div style="clear: both;"></div> 	
+    </div>
+    
+    <script type="text/javascript">
+		map = createMap( 'osm-map', 1050, 700, 650 );
+	
+		// Add OSM tile leayer to the Leaflet map.
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', 
+		{
+			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attribution">W4$</a>'
+		}).addTo(map);
+	
+		// Set map's center to target with zoom 4.
+		map.setView({ lat: 47.040182144806664, lng: 9.667968750000002 }, 4);
+	
+	    // How to Place a marker on the same location.
+		//          L.marker(target).addTo(map);
+	          
+		//	Stam !!!		
+		addOnClick(map);
+	
+		//	Add all transparent countries...
+		geojsonAllCountries = createGeoCountries( map, euCountries, '#FFFFFF', 2, 0.0, '#FFFFFF', '0', 0.0 );
+		geojsonAllCountries.eachLayer( function(layer) { layer.bindPopup(layer.feature.properties.name); } );				
+					
+		//	Add 3 countries - Albania, Belarus and Ukraine
+		geojson3Countries = createGeoCountries( map, euCountries2, '#E31A1C', 2, 1, 'white', '0', 0.2 );
+		geojson3Countries.eachLayer( function(layer) { layer.bindPopup('My' + layer.feature.properties.name); } );
+	
+		//	Add Afganistan
+		geojsonAfganistan = createGeoCountries( map, euCountries1, '#13DADC', 2, 1, 'white', '0', 0.2 );
+		geojsonAfganistan.eachLayer( function(layer) { layer.bindPopup(layer.feature.properties.name); } );
+    </script>
+    
+    <footer style="background: #E0E0E0; text-align: center; padding: 5px; margin-top: 10px;">
+  		@Copyright mysite.com
+	</footer>
+
+  </body>
+</html>
