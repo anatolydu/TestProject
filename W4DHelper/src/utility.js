@@ -48,3 +48,7 @@ function createGeoCountries( map, fromVariable, mapColor, borderWeight, borderOp
 	return geojson;
 }
 
+function todoSomething()
+{
+
+}
